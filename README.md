@@ -1,4 +1,4 @@
-Math Divisor Project
+# Math Divisor Project
 
 Hypothesis:  I believe that the sum of the divisors as n approaches infinity is an exponential graph, but if you graph the absolute value of the difference of the sum from the original integer, the graph becomes a normal distribution. 
 Test one: Finding a set of numbers from 1-x that shows a trend line with enough accuracy to apply to the set of integers. 
