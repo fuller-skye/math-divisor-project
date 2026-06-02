@@ -40,7 +40,7 @@ def is_prime(n):
 
 def main():
     """Find the divisors and their sum for future testing."""
-    for n in range(1, 1000):
+    for n in range(1, 100):
         try:
             divisors = get_divisors(n)
             Div = (f"\nDivisors of {n}: {divisors}")
@@ -70,16 +70,46 @@ def plot_difference():
         try:
             divisors = get_divisors(i)
             sum_divisors = sum(divisors)
-            diff = abs(sum_divisors - (2 * i))
+            diff = (sum_divisors - (2 * i))
             x.append(i)
             y.append(diff)
         except ValueError as e:
             print(f"Invalid input: {e}\n")
+
+
+def diff_comp():
+    """the difference in comparison to how large the original number is"""
+    for i in range(1,100):
+        try:
+            original = i
+            divisors = get_devisors(i)
+            sum_devisors = sum(devisors)
+            diff = abs(sum_devisors - (2 * i))
+            diff_comp = (diff/original)
+            print(diff_comp)
+        except ValueError as e:
+            print(f"Invalid input: {e}\n")
+
+def plot_diffcomp():
+    """plot the comparitive difference against the original intiger"""
+    u = []
+    v = []
+    for i in range(1, 100):
+        try:
+            original = i
+            divisors = get_devisors(i)
+            sum_devisors = sum(devisors)
+            diff = abs(sum_devisors - (2 * i))
+            diff_comp = (diff/original)
+            u.append(i)
+            v.append(diff_comp)
+        except ValueError as e:
+            print(f"Invalid input: {e}\n")
     
-    plt.scatter(x, y)
+    plt.scatter(u, v)
     plt.xlabel("Number")
-    plt.ylabel("Difference")
-    plt.title("Divisor Sum vs Number")
+    plt.ylabel("Comparitive Difference")
+    plt.title("Comparitive Divisor Sum vs Number")
     plt.show()
 
 
