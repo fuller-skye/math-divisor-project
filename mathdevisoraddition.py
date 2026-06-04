@@ -82,9 +82,9 @@ def diff_comp():
     for i in range(1,100):
         try:
             original = i
-            divisors = get_devisors(i)
-            sum_devisors = sum(devisors)
-            diff = abs(sum_devisors - (2 * i))
+            divisors = get_divisors(i)
+            sum_divisors = sum(divisors)
+            diff = abs(sum_divisors - (2 * i))
             diff_comp = (diff/original)
             print(diff_comp)
         except ValueError as e:
@@ -97,9 +97,9 @@ def plot_diffcomp():
     for i in range(1, 100):
         try:
             original = i
-            divisors = get_devisors(i)
-            sum_devisors = sum(devisors)
-            diff = abs(sum_devisors - (2 * i))
+            divisors = get_divisors(i)
+            sum_divisors = sum(divisors)
+            diff = abs(sum_divisors - (2 * i))
             diff_comp = (diff/original)
             u.append(i)
             v.append(diff_comp)
