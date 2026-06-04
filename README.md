@@ -5,3 +5,9 @@ Test one: Finding a set of numbers from 1-x that shows a trend line with enough 
 Test two: Once the exponential graph is within enough margin of error, change the graph to the second part of my hypothesis to see if the trend is as expected
 
 Hypothesis 2: If the difference graph is not an exponential distribution, I believe that it will show a linear distribution due to the increasing number. If such happens, if there is a y-intercept of 0 for the trendline, I will normalize the difference to the integer to see if that produces a normal graph
+
+
+I have found that when you only apply the code to prime numbers for the difference graph, it creates a logarithmic graph.
+
+Also, seperate trendlines are showing up for different groups of numbers
+
