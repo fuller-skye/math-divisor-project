@@ -1,5 +1,6 @@
 import math
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 
@@ -40,7 +41,7 @@ def is_prime(n):
 
 def main():
     """Find the divisors and their sum for future testing."""
-    for n in range(1, 100):
+    for n in range(1, 1000):
         try:
             divisors = get_divisors(n)
             Div = (f"\nDivisors of {n}: {divisors}")
@@ -52,7 +53,7 @@ def main():
             
 def difference():
     """Calculate the difference between the sum of divisors and the number itself."""
-    for i in range(1, 100):
+    for i in range(1, 1000):
         try:
             divisors = get_divisors(i)
             sum_divisors = sum(divisors)
@@ -66,15 +67,31 @@ def plot_difference():
     """Plot the difference between the sum of divisors and the number itself."""
     x = []
     y = []
-    for i in range(1, 100):
+    for i in range(1, 1000):
         try:
             divisors = get_divisors(i)
             sum_divisors = sum(divisors)
-            diff = (sum_divisors - (2 * i))
+            diff = abs(sum_divisors - (2 * i))
             x.append(i)
             y.append(diff)
         except ValueError as e:
             print(f"Invalid input: {e}\n")
+            
+    coefficients1 = np.polyfit(x, y, 1)
+    linear_function = np.poly1d(coefficients1)
+    coefficients2 = np.polyfit(x, np.log(y), 1)
+    a = np.exp(coefficients2[1])
+    b = coefficients2[0]
+    exp_function = lambda x: a * np.exp(b * np.array(x))
+    
+    plt.scatter(x, y, color = "lightgreen", alpha=0.5)
+    plt.plot(x, linear_function(x), color="green", linestyle="-", label="Trendline")
+    plt.plot(x, exp_function(x), color="darkgreen", linestyle="--", label="Exponential Trendline")
+    plt.xlabel("Number")
+    plt.ylabel("Difference")
+    plt.title("Divisor Sum vs Number")
+    plt.show()
+    plt.legend()
 
 
 def diff_comp():
@@ -92,26 +109,85 @@ def diff_comp():
 
 def plot_diffcomp():
     """plot the comparitive difference against the original intiger"""
-    u = []
-    v = []
-    for i in range(1, 100):
+    x = []
+    y = []
+    for i in range(1, 1000):
         try:
-            original = i
-            divisors = get_divisors(i)
-            sum_divisors = sum(divisors)
-            diff = abs(sum_divisors - (2 * i))
-            diff_comp = (diff/original)
-            u.append(i)
-            v.append(diff_comp)
+            if is_prime(i):
+                original = i
+                divisors = get_divisors(i)
+                sum_divisors = sum(divisors)
+                diff = abs(sum_divisors - (2 * i))
+                diff_comp = (diff/original)
+                x.append(i)
+                y.append(diff_comp)
         except ValueError as e:
             print(f"Invalid input: {e}\n")
+            
+    coefficients1 = np.polyfit(x, y, 1)
+    linear_function = np.poly1d(coefficients1)
+    coefficients2 = np.polyfit(x, np.log(y), 1)
+    a = np.exp(coefficients2[1])
+    b = coefficients2[0]
+    exp_function = lambda x: a * np.exp(b * np.array(x))
     
-    plt.scatter(u, v)
+    plt.scatter(x, y, color = "lightgreen", alpha=0.5)
+    plt.plot(x, linear_function(x), color="green", linestyle="-", label="Trendline")
+    plt.plot(x, exp_function(x), color="darkgreen", linestyle="--", label="Exponential Trendline")
     plt.xlabel("Number")
-    plt.ylabel("Comparitive Difference")
-    plt.title("Comparitive Divisor Sum vs Number")
+    plt.ylabel("Difference")
+    plt.title("Divisor Sum vs Number for prime numbers")
+    plt.show()
+    plt.legend()
+
+
+def plot_perfect_and_prime():
+    """Plot perfect numbers and prime numbers with trendline analysis."""
+    x_perfect = []
+    y_perfect = []
+    x_prime = []
+    y_prime = []
+    
+    for i in range(2, 10000):
+        divisors = get_divisors(i)
+        sum_divisors = sum(divisors)
+        
+        if perfect_number(i):
+            x_perfect.append(i)
+            y_perfect.append(sum_divisors - i)
+        
+        if is_prime(i):
+            x_prime.append(i)
+            y_prime.append(sum_divisors - i)
+    
+    # Plot perfect numbers
+    if x_perfect:
+        plt.scatter(x_perfect, y_perfect, color="green", alpha=0.5, s=100, label="Perfect Numbers")
+        
+        # Add trendline for perfect numbers
+        coefficients = np.polyfit(x_perfect, y_perfect, 2)
+        poly_function = np.poly1d(coefficients)
+        x_trend = np.linspace(min(x_perfect), max(x_perfect), 100)
+        plt.plot(x_trend, poly_function(x_trend), color="green", linestyle="--")
+    
+    # Plot primes
+    if x_prime:
+        plt.scatter(x_prime, y_prime, color="lightblue", alpha=0.3, s=20, label="Prime Numbers")
+        
+        # Add trendline for primes
+        coefficients = np.polyfit(x_prime, y_prime, 2)
+        poly_function = np.poly1d(coefficients)
+        x_trend = np.linspace(min(x_prime), max(x_prime), 100)
+        plt.plot(x_trend, poly_function(x_trend), color="blue", linestyle="--", label="Prime Trendline")
+    
+    plt.xlabel("Number")
+    plt.ylabel("Sum of Divisors - Number")
+    plt.title("Perfect Numbers vs Prime Numbers")
+    plt.legend()
+    plt.grid(True, alpha=0.3)
     plt.show()
 
 
 if __name__ == "__main__":
-    plot_difference()
+    plot_perfect_and_prime()
+    
