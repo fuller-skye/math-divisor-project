@@ -23,5 +23,6 @@ Null Hypothesis: The different trend lines in the original graph were representi
 Hypothesis : The relationship will not exist for all of the trendlines, but will exists for the major ones, specifically the one that seperates one half of the graph from the other, or x=y
 
 Code - [Python](https://github.com/fuller-skye/math-divisor-project/blob/main/mathdevisoraddition.py)
+
 Figures - [Project](https://github.com/users/fuller-skye/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Repository%22%2C%22Created%22%5D)
 
