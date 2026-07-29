@@ -22,4 +22,5 @@ Hypothesis 2 : If the difference graph is not a exponential distriibution, i bel
 Null Hypothesis: The different trend lines in the original graph were representitive of different sets of numbers, or that they will have a relationship to eachother
 Hypothesis : The relationship will not exist for all of the trendlines, but will exists for the major ones, specifically the one that seperates one half of the graph from the other, or x=y
 
+Figures - [Project](https://github.com/users/fuller-skye/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Repository%22%2C%22Created%22%5D)
 
